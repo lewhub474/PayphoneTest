@@ -13,7 +13,9 @@ struct UserDetailView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Phone: \(user.phone)")
             Text("Website: \(user.website)")
-            Text("Company: \(user.company.name)")
+            if let company = user.company {
+                Text("Company: \(company.name)")
+            }
         }
         .padding()
         .navigationTitle(user.name)
