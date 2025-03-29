@@ -13,21 +13,24 @@ struct UserListView: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.users) { user in
-                NavigationLink(destination: UserDetailView(user: user)) {
-                    VStack(alignment: .leading) {
-                        Text(user.username)
-                            .font(.headline)
-                        Text(user.name)
-                            .font(.subheadline)
-                        Text(user.email)
-                            .font(.subheadline)
-                        Text(user.phone)
-                            .font(.subheadline)
-                        Text(user.city)
-                            .font(.subheadline)
+            List {
+                ForEach(viewModel.users) { user in
+                    NavigationLink(destination: UserDetailView(user: user)) {
+                        VStack(alignment: .leading) {
+                            Text(user.username)
+                                .font(.headline)
+                            Text(user.name)
+                                .font(.subheadline)
+                            Text(user.email)
+                                .font(.subheadline)
+                            Text(user.phone)
+                                .font(.subheadline)
+                            Text(user.city)
+                                .font(.subheadline)
+                        }
                     }
                 }
+                .onDelete(perform: viewModel.deleteUser) // Habilitar la eliminación al deslizar
             }
             .navigationTitle("Usuarios")
             .onAppear {
