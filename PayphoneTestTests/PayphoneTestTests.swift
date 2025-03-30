@@ -6,31 +6,58 @@
 //
 
 import XCTest
+import RealmSwift
 @testable import PayphoneTest
 
-final class PayphoneTestTests: XCTestCase {
+@MainActor
+final class UserListViewModelTests: XCTestCase {
+    var sut: UserListViewModel! // System Under Test
+    var inMemoryRealm: Realm!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // Configuramos un Realm en memoria para pruebas
+        var config = Realm.Configuration()
+        config.inMemoryIdentifier = "TestRealm" // Identificador único para usar Realm en memoria
+        inMemoryRealm = try Realm(configuration: config)
+        
+        // Limpiamos el Realm antes de cada prueba
+        try inMemoryRealm.write {
+            inMemoryRealm.deleteAll() // Asegúrate de borrar todos los objetos previos
+        }
+
+        // Inicializamos el UserListViewModel
+        sut = UserListViewModel()
+        sut.realm = inMemoryRealm // Asignamos el Realm en memoria al ViewModel
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        inMemoryRealm = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testAddUser_newUser_shouldAddUserToRealmAndList() async throws {
+        // Dado un usuario nuevo
+        let newUser = User()
+        newUser.id = 1
+        newUser.name = "Juan"
+        newUser.username = "juan123"
+        newUser.email = "juan@test.com"
+        newUser.phone = "123456"
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        
+        // Cuando añadimos el usuario
+        sut.addUser(newUser)
+        
+        // Esperamos un pequeño retardo para asegurar que las operaciones de escritura terminen
+        await Task.yield()
 
+        // Verificamos que el usuario fue añadido a la lista en el ViewModel
+        XCTAssertEqual(sut.users.count, 1, "La lista de usuarios debe contener el usuario añadido.")
+        XCTAssertEqual(sut.users.first?.name, "Juan", "El usuario añadido debe llamarse Juan.")
+
+        // Verificamos que el usuario también fue añadido al Realm
+        let realmUser = inMemoryRealm.object(ofType: User.self, forPrimaryKey: newUser.id)
+        XCTAssertNotNil(realmUser, "El usuario debe existir en Realm.")
+        XCTAssertEqual(realmUser?.name, "Juan", "El nombre del usuario en Realm debe ser Juan.")
+    }
 }

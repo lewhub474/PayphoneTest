@@ -17,7 +17,7 @@ class UserListViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var showAddUserView = false
     
-    private var realm: Realm
+     var realm: Realm
     
     init() {
         realm = try! Realm()
