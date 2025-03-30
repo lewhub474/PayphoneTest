@@ -17,7 +17,7 @@ class User: Object, Identifiable, Codable {
     @Persisted var phone: String = ""
     @Persisted var city: String = ""
     @Persisted var website: String = ""
-    @Persisted var company: Company?  // Empresa del usuario, opcional por si es null en el JSON
+    @Persisted var company: Company?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,7 +34,6 @@ class User: Object, Identifiable, Codable {
         case city
     }
     
-    // Custom init para decodificar los valores anidados
     required convenience init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -47,11 +46,9 @@ class User: Object, Identifiable, Codable {
         
         let addressContainer = try container.nestedContainer(keyedBy: AddressCodingKeys.self, forKey: .address)
         self.city = try addressContainer.decode(String.self, forKey: .city)
-
         self.company = try container.decodeIfPresent(Company.self, forKey: .company)
     }
 
-    // Método para codificar (necesario para Codable)
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
@@ -68,15 +65,3 @@ class User: Object, Identifiable, Codable {
     }
 }
 
-// Modelo para Company
-class Company: Object, Codable {
-    @Persisted var name: String = ""
-    @Persisted var catchPhrase: String = ""
-    @Persisted var bs: String = ""
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case catchPhrase
-        case bs
-    }
-}

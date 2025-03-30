@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3353B0F774E49BFD349B0E13 /* Pods_PayphoneTest_PayphoneTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 412F79A69397756D889E2B7B /* Pods_PayphoneTest_PayphoneTestUITests.framework */; };
 		8044C1252D98783100DF03DB /* PayphoneTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8044C1242D98783100DF03DB /* PayphoneTestApp.swift */; };
-		8044C1272D98783100DF03DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8044C1262D98783100DF03DB /* ContentView.swift */; };
 		8044C1292D98783300DF03DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8044C1282D98783300DF03DB /* Assets.xcassets */; };
 		8044C12C2D98783300DF03DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8044C12B2D98783300DF03DB /* Preview Assets.xcassets */; };
 		8044C1362D98783300DF03DB /* PayphoneTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8044C1352D98783300DF03DB /* PayphoneTestTests.swift */; };
@@ -25,6 +24,7 @@
 		806728F72D98A98300D797A1 /* AddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806728F62D98A98300D797A1 /* AddUserView.swift */; };
 		806728FA2D98C13600D797A1 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806728F92D98C13600D797A1 /* CoreLocationManager.swift */; };
 		806728FC2D98C80800D797A1 /* AddUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806728FB2D98C80800D797A1 /* AddUserViewModel.swift */; };
+		806728FF2D98D7A200D797A1 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806728FE2D98D7A200D797A1 /* Companies.swift */; };
 		8DF2583E7444054A56FFDBF2 /* Pods_PayphoneTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDB4C9A33E31E5B03898E89 /* Pods_PayphoneTestTests.framework */; };
 		C5976FE8BEF7613EC56AA7FF /* Pods_PayphoneTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D7503C44F07B2477332E0B7 /* Pods_PayphoneTest.framework */; };
 /* End PBXBuildFile section */
@@ -54,7 +54,6 @@
 		6423B622A93812C3EEBBF6EF /* Pods-PayphoneTest-PayphoneTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayphoneTest-PayphoneTestUITests.release.xcconfig"; path = "Target Support Files/Pods-PayphoneTest-PayphoneTestUITests/Pods-PayphoneTest-PayphoneTestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8044C1212D98783100DF03DB /* PayphoneTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayphoneTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8044C1242D98783100DF03DB /* PayphoneTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayphoneTestApp.swift; sourceTree = "<group>"; };
-		8044C1262D98783100DF03DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8044C1282D98783300DF03DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8044C12B2D98783300DF03DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8044C1312D98783300DF03DB /* PayphoneTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayphoneTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +71,7 @@
 		806728F82D98C0D600D797A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		806728F92D98C13600D797A1 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
 		806728FB2D98C80800D797A1 /* AddUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewModel.swift; sourceTree = "<group>"; };
+		806728FE2D98D7A200D797A1 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		9D7503C44F07B2477332E0B7 /* Pods_PayphoneTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayphoneTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A506DA74ED93138028B1E689 /* Pods-PayphoneTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayphoneTestTests.release.xcconfig"; path = "Target Support Files/Pods-PayphoneTestTests/Pods-PayphoneTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBDB4C9A33E31E5B03898E89 /* Pods_PayphoneTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayphoneTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,13 +134,12 @@
 			children = (
 				806728F82D98C0D600D797A1 /* Info.plist */,
 				8044C1242D98783100DF03DB /* PayphoneTestApp.swift */,
-				8044C1262D98783100DF03DB /* ContentView.swift */,
-				806728F92D98C13600D797A1 /* CoreLocationManager.swift */,
+				806728EA2D989D2600D797A1 /* View */,
+				806728E52D989CF400D797A1 /* Model */,
+				806728ED2D989D5900D797A1 /* ViewModel */,
 				806728F32D989DA200D797A1 /* UseCases */,
 				806728F02D989D7700D797A1 /* Networking */,
-				806728E52D989CF400D797A1 /* Model */,
-				806728EA2D989D2600D797A1 /* View */,
-				806728ED2D989D5900D797A1 /* ViewModel */,
+				806728FD2D98D62700D797A1 /* Utilities */,
 				8044C1282D98783300DF03DB /* Assets.xcassets */,
 				8044C12A2D98783300DF03DB /* Preview Content */,
 			);
@@ -176,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				806728E62D989CFE00D797A1 /* Users.swift */,
+				806728FE2D98D7A200D797A1 /* Companies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +213,14 @@
 				806728F42D989DBA00D797A1 /* GetUsersUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		806728FD2D98D62700D797A1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				806728F92D98C13600D797A1 /* CoreLocationManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		B1CB16126E55C380A62A5154 /* Pods */ = {
@@ -482,7 +490,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8044C1272D98783100DF03DB /* ContentView.swift in Sources */,
 				806728F52D989DBA00D797A1 /* GetUsersUseCase.swift in Sources */,
 				806728F22D989D8400D797A1 /* UserService.swift in Sources */,
 				806728EF2D989D6600D797A1 /* UserListViewModel.swift in Sources */,
@@ -490,6 +497,7 @@
 				8044C1252D98783100DF03DB /* PayphoneTestApp.swift in Sources */,
 				806728EC2D989D4E00D797A1 /* UserDetailView.swift in Sources */,
 				806728FC2D98C80800D797A1 /* AddUserViewModel.swift in Sources */,
+				806728FF2D98D7A200D797A1 /* Companies.swift in Sources */,
 				806728FA2D98C13600D797A1 /* CoreLocationManager.swift in Sources */,
 				806728E92D989D2200D797A1 /* UserListView.swift in Sources */,
 				806728F72D98A98300D797A1 /* AddUserView.swift in Sources */,

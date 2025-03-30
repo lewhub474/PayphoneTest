@@ -16,31 +16,22 @@ class UserListViewModel: ObservableObject {
     @Published var showingError = false
     @Published var errorMessage = ""
     @Published var showAddUserView = false
-
+    
     private var realm: Realm
-
+    
     init() {
-        // Inicializar Realm
         realm = try! Realm()
-        // Cargar usuarios locales al iniciar el ViewModel
         loadUsersFromRealm()
     }
     
     func fetchUsers() async {
-        // Cargar usuarios desde Realm antes de intentar la API
         loadUsersFromRealm()
-
         do {
-            // Obtener usuarios de la API
             let fetchedUsers = try await GetUsersUseCase().execute()
-
-            // Guardar los usuarios obtenidos en Realm
             saveUsersToRealm(fetchedUsers)
-
-            // Combinar usuarios evitando duplicados por ID
             let realmUsers = Array(realm.objects(User.self))
             let combinedUsers = Array(Set(fetchedUsers).union(Set(realmUsers)))
-
+            
             DispatchQueue.main.async {
                 self.users = combinedUsers
             }
@@ -56,20 +47,18 @@ class UserListViewModel: ObservableObject {
             }
         }
     }
-
-    // Cargar usuarios almacenados localmente desde Realm
+    
     private func loadUsersFromRealm() {
         let realmUsers = realm.objects(User.self)
         DispatchQueue.main.async {
             self.users = Array(realmUsers)
         }
     }
-
-    // Guardar los usuarios en la base de datos Realm
+    
     private func saveUsersToRealm(_ users: [User]) {
         do {
             try realm.write {
-                realm.add(users, update: .modified)  // .modified solo actualiza los existentes, no duplica
+                realm.add(users, update: .modified)
             }
         } catch {
             print("Error al guardar usuarios en Realm: \(error)")
@@ -81,7 +70,6 @@ class UserListViewModel: ObservableObject {
             print("El usuario con id \(user.id) ya existe, no se añadirá.")
             return
         }
-
         do {
             try realm.write {
                 realm.add(user)
@@ -93,7 +81,7 @@ class UserListViewModel: ObservableObject {
             print("Error al guardar el usuario en Realm: \(error)")
         }
     }
-
+    
     func deleteUser(at offsets: IndexSet) {
         offsets.forEach { index in
             let user = users[index]

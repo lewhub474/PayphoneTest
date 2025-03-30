@@ -10,7 +10,7 @@ import SwiftUI
 struct UserListView: View {
     @StateObject private var viewModel = UserListViewModel()
     @State private var showingAddUserView = false
-
+    
     var body: some View {
         NavigationView {
             VStack  {
@@ -31,20 +31,20 @@ struct UserListView: View {
                             }
                         }
                     }
-                    .onDelete(perform: viewModel.deleteUser) // Habilitar la eliminación al deslizar
+                    .onDelete(perform: viewModel.deleteUser)
                 }
             }
             .navigationTitle("Usuarios")
             .onAppear {
                 Task {
-                    await viewModel.fetchUsers()  // Cargar usuarios al aparecer la vista
+                    await viewModel.fetchUsers()
                 }
             }
             .alert(isPresented: $viewModel.showingError) {
                 Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
             }
             .sheet(isPresented: $showingAddUserView) {
-                AddUserView(viewModel: viewModel)  // Pasar el ViewModel
+                AddUserView(viewModel: viewModel)
             }
             .overlay(
                 Button(action: {
@@ -58,7 +58,7 @@ struct UserListView: View {
                         .clipShape(Circle())
                         .shadow(radius: 6)
                 }
-                .padding(),
+                    .padding(),
                 alignment: .bottomTrailing
             )
         }

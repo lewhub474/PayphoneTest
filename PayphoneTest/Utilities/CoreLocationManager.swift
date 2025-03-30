@@ -9,10 +9,9 @@ import Foundation
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var city: String = ""
     @Published var latitude: Double = 0.0
     @Published var longitude: Double = 0.0
-    @Published var locationError: String? // Para manejar el error de localización
+    @Published var locationError: String?
     @Published var showLocationPopup: Bool = false
 
     private var locationManager: CLLocationManager?
@@ -36,9 +35,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if let location = locations.first {
             latitude = location.coordinate.latitude
             longitude = location.coordinate.longitude
-            // Aquí podrías utilizar una API o librería para obtener la ciudad
-            city = "Ciudad Ejemplo" // Para propósitos de ejemplo
-            locationError = nil // Limpiar errores previos si la ubicación se obtiene correctamente
+            locationError = nil
             showLocationPopup = true
             locationManager?.stopUpdatingLocation()
         }

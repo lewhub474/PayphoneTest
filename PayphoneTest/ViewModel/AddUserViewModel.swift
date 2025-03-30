@@ -15,9 +15,8 @@ class AddUserViewModel: ObservableObject {
     @Published var phone = ""
     @Published var city = ""
     @Published var isFormValid = false
-    @Published var formError = "" // Para mensajes de error globales
+    @Published var formError = ""
 
-    // Validar que todos los campos estén llenos y el email sea válido
     func validateForm() {
         if name.isEmpty || username.isEmpty || email.isEmpty || phone.isEmpty || city.isEmpty {
             formError = "Por favor, completa todos los campos."
@@ -31,14 +30,12 @@ class AddUserViewModel: ObservableObject {
         }
     }
 
-    // Validar formato del correo electrónico
      func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
 
-    // Método para guardar un nuevo usuario
     func saveUser(using viewModel: UserListViewModel) {
         let newUser = User()
         newUser.id = Int.random(in: 1...1000)
@@ -47,7 +44,6 @@ class AddUserViewModel: ObservableObject {
         newUser.email = email
         newUser.phone = phone
         newUser.city = city
-        
         viewModel.addUser(newUser)
     }
 }
