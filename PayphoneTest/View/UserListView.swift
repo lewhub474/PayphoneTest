@@ -13,24 +13,26 @@ struct UserListView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.users) { user in
-                    NavigationLink(destination: UserDetailView(user: user)) {
-                        VStack(alignment: .leading) {
-                            Text(user.username)
-                                .font(.headline)
-                            Text(user.name)
-                                .font(.subheadline)
-                            Text(user.email)
-                                .font(.subheadline)
-                            Text(user.phone)
-                                .font(.subheadline)
-                            Text(user.city)
-                                .font(.subheadline)
+            VStack  {
+                List {
+                    ForEach(viewModel.users) { user in
+                        NavigationLink(destination: UserDetailView(user: user)) {
+                            VStack(alignment: .leading) {
+                                Text(user.username)
+                                    .font(.headline)
+                                Text(user.name)
+                                    .font(.subheadline)
+                                Text(user.email)
+                                    .font(.subheadline)
+                                Text(user.phone)
+                                    .font(.subheadline)
+                                Text(user.city)
+                                    .font(.subheadline)
+                            }
                         }
                     }
+                    .onDelete(perform: viewModel.deleteUser) // Habilitar la eliminación al deslizar
                 }
-                .onDelete(perform: viewModel.deleteUser) // Habilitar la eliminación al deslizar
             }
             .navigationTitle("Usuarios")
             .onAppear {
@@ -49,12 +51,12 @@ struct UserListView: View {
                     showingAddUserView = true
                 }) {
                     Image(systemName: "plus")
-                        .font(.system(size: 24))
+                        .font(.system(size: 30))
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.black)
                         .foregroundColor(.white)
                         .clipShape(Circle())
-                        .shadow(radius: 4)
+                        .shadow(radius: 6)
                 }
                 .padding(),
                 alignment: .bottomTrailing
