@@ -10,41 +10,41 @@ import SwiftUI
 struct UserListView: View {
     @StateObject private var viewModel = UserListViewModel()
     @State private var showingAddUserView = false
+    @EnvironmentObject var coordinator: Coordinator
     
     var body: some View {
         NavigationView {
-            VStack  {
+            VStack {
                 List {
                     ForEach(viewModel.users) { user in
-                        NavigationLink(destination: UserDetailView(user: user)) {
-                            VStack(alignment: .leading) {
-                                Text(user.username)
-                                    .font(.headline)
-                                Text(user.name)
-                                    .font(.subheadline)
-                                Text(user.email)
-                                    .font(.subheadline)
-                                Text(user.phone)
-                                    .font(.subheadline)
-                                Text(user.city)
-                                    .font(.subheadline)
+                        NavigationLink(destination: UserDetailView(user: user)
+                            .environmentObject(coordinator)) {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text(user.username)
+                                        .font(.headline)
+                                    Text(user.name)
+                                        .font(.subheadline)
+                                    Text(user.email)
+                                        .font(.subheadline)
+                                    Text(user.phone)
+                                        .font(.subheadline)
+                                    Text(user.city)
+                                        .font(.subheadline)
+                                }
                             }
-                        }
                     }
                     .onDelete(perform: viewModel.deleteUser)
                 }
-            }
-            .navigationTitle("Usuarios")
-            .onAppear {
-                Task {
-                    await viewModel.fetchUsers()
+                .listStyle(PlainListStyle()) 
+                .navigationTitle("Usuarios")
+                .onAppear {
+                    Task {
+                        await viewModel.fetchUsers()
+                    }
                 }
-            }
-            .alert(isPresented: $viewModel.showingError) {
-                Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
-            }
-            .sheet(isPresented: $showingAddUserView) {
-                AddUserView(viewModel: viewModel)
+                .alert(isPresented: $viewModel.showingError) {
+                    Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
+                }
             }
             .overlay(
                 Button(action: {
@@ -53,7 +53,7 @@ struct UserListView: View {
                     Image(systemName: "plus")
                         .font(.system(size: 30))
                         .padding()
-                        .background(Color.black)
+                        .background(Color.blue)
                         .foregroundColor(.white)
                         .clipShape(Circle())
                         .shadow(radius: 6)
@@ -61,6 +61,10 @@ struct UserListView: View {
                     .padding(),
                 alignment: .bottomTrailing
             )
+            .sheet(isPresented: $showingAddUserView) {
+                AddUserView(viewModel: viewModel)
+                    .environmentObject(coordinator)
+            }
         }
     }
 }

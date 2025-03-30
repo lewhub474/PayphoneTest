@@ -14,11 +14,13 @@ class AddUserViewModel: ObservableObject {
     @Published var email = ""
     @Published var phone = ""
     @Published var city = ""
+    @Published var companyName = ""
+    @Published var website = ""
     @Published var isFormValid = false
     @Published var formError = ""
 
     func validateForm() {
-        if name.isEmpty || username.isEmpty || email.isEmpty || phone.isEmpty || city.isEmpty {
+        if name.isEmpty || username.isEmpty || email.isEmpty || phone.isEmpty || city.isEmpty || companyName.isEmpty || website.isEmpty {
             formError = "Por favor, completa todos los campos."
             isFormValid = false
         } else if !isValidEmail(email) {
@@ -30,7 +32,7 @@ class AddUserViewModel: ObservableObject {
         }
     }
 
-     func isValidEmail(_ email: String) -> Bool {
+    func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
@@ -44,6 +46,11 @@ class AddUserViewModel: ObservableObject {
         newUser.email = email
         newUser.phone = phone
         newUser.city = city
+        newUser.website = website
+        
+        let company = Company()
+        company.name = companyName
+        newUser.company = company
         viewModel.addUser(newUser)
     }
 }

@@ -8,6 +8,7 @@ import SwiftUI
 
 struct UserDetailView: View {
     let user: User
+    @EnvironmentObject var coordinator: Coordinator
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
