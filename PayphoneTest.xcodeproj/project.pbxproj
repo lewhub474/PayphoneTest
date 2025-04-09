@@ -26,8 +26,6 @@
 		806728FC2D98C80800D797A1 /* AddUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806728FB2D98C80800D797A1 /* AddUserViewModel.swift */; };
 		806728FF2D98D7A200D797A1 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806728FE2D98D7A200D797A1 /* Companies.swift */; };
 		806729022D98E1A500D797A1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806729012D98E1A500D797A1 /* Coordinator.swift */; };
-		806729042D98E1C100D797A1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806729032D98E1C100D797A1 /* AppCoordinator.swift */; };
-		806729062D98E4E700D797A1 /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806729052D98E4E700D797A1 /* CoordinatorView.swift */; };
 		8DF2583E7444054A56FFDBF2 /* Pods_PayphoneTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDB4C9A33E31E5B03898E89 /* Pods_PayphoneTestTests.framework */; };
 		C5976FE8BEF7613EC56AA7FF /* Pods_PayphoneTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D7503C44F07B2477332E0B7 /* Pods_PayphoneTest.framework */; };
 /* End PBXBuildFile section */
@@ -76,8 +74,6 @@
 		806728FB2D98C80800D797A1 /* AddUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewModel.swift; sourceTree = "<group>"; };
 		806728FE2D98D7A200D797A1 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		806729012D98E1A500D797A1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		806729032D98E1C100D797A1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		806729052D98E4E700D797A1 /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
 		9D7503C44F07B2477332E0B7 /* Pods_PayphoneTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayphoneTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A506DA74ED93138028B1E689 /* Pods-PayphoneTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayphoneTestTests.release.xcconfig"; path = "Target Support Files/Pods-PayphoneTestTests/Pods-PayphoneTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBDB4C9A33E31E5B03898E89 /* Pods_PayphoneTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayphoneTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,9 +229,7 @@
 		806729002D98E19800D797A1 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				806729032D98E1C100D797A1 /* AppCoordinator.swift */,
 				806729012D98E1A500D797A1 /* Coordinator.swift */,
-				806729052D98E4E700D797A1 /* CoordinatorView.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -430,9 +424,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PayphoneTest/Pods-PayphoneTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PayphoneTest/Pods-PayphoneTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -469,9 +467,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PayphoneTest-PayphoneTestUITests/Pods-PayphoneTest-PayphoneTestUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PayphoneTest-PayphoneTestUITests/Pods-PayphoneTest-PayphoneTestUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -508,9 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				806728F52D989DBA00D797A1 /* GetUsersUseCase.swift in Sources */,
-				806729062D98E4E700D797A1 /* CoordinatorView.swift in Sources */,
 				806728F22D989D8400D797A1 /* UserService.swift in Sources */,
-				806729042D98E1C100D797A1 /* AppCoordinator.swift in Sources */,
 				806728EF2D989D6600D797A1 /* UserListViewModel.swift in Sources */,
 				806728E72D989CFE00D797A1 /* Users.swift in Sources */,
 				8044C1252D98783100DF03DB /* PayphoneTestApp.swift in Sources */,
